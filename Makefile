@@ -3,6 +3,6 @@ SHELL := /bin/bash
 
 include sample_sub/Makefile
 
-run-app-from-main: run-app
+run-app-from-main:
 	@echo '==================== running the app from main Makefile ==================='
-
+	make -C	sample_sub run-app
