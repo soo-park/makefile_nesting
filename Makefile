@@ -14,3 +14,4 @@ call-something-in-self:
 	make myapp-fake
 
 kill-app-by-pid:
+	kill $(lsof -n -i :3000 | grep LISTEN)
