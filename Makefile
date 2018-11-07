@@ -5,4 +5,5 @@ include sample_sub/Makefile
 
 run-app-from-main:
 	@echo '==================== running the app from main Makefile ==================='
-	make -C	sample_sub run-app
+	make -C	sample_sub run-app &
+	touch text.txt
