@@ -1,7 +1,6 @@
 OS := $(shell uname)
 SHELL := /bin/bash
-
-include sample_sub/Makefile
+.PHONY: myapp-fake clean whatever all-fakes
 
 run-app-from-main:
 	@echo '==================== running the app from main Makefile ==================='
@@ -12,3 +11,6 @@ run-app-from-main:
 call-something-in-self:
 	@echo '==================== call something in self ==================='
 	echo O >> logfile
+	make myapp-fake
+
+kill-app-by-pid:
