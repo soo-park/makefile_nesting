@@ -2,8 +2,6 @@ OS := $(shell uname)
 SHELL := /bin/bash
 TODAY=`date +'%y.%m.%d %H:%M:%S'`
 .PHONY: myapp-fake clean whatever all-fakes
-SAMPLE1 := sample_sub
-SAMPLE2 := 
 
 run-app-from-main:
 	@echo '==================== running the app from main Makefile ==================='
