@@ -57,13 +57,9 @@ touch2:
 		cd $(dir $$dir) && touch logfile.txt; \
 		done
 
-delete:
-	for dir in $(ALL_SPL_PATHS); do \
-		cd $(dir $$dir) \ rm -f logfile.txt; \
-		done
+include common/Makefile
 
-all:
+delete_all:
 	for dir in $(ALL_SPL_PATHS); do \
-		make delete
-		cd $(notdir $$dir) && npm install; \
+		cd $(notdir $$dir) && make delete; \
 		done
