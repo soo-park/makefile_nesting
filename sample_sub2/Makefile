@@ -1,7 +1,5 @@
 OS := $(shell uname)
 SHELL := /bin/bash
-INPATH := /
-PATH := $(SHELL)
 
 run-app:
 	@echo '==================== $(PATH)$(INPATH) ==================='

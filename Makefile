@@ -47,24 +47,23 @@ install:
 		cd $(notdir $$dir) && npm install; \
 		done
 
-# TODO: WRONG - errors out
- # difference - file operation
 touch:
 	for dir in $(ALL_SPL_PATHS); do \
 		cd $(notdir $$dir) && touch logfile.txt; \
 		done
 
-# TODO: WRONG - makes only one on parent
- # difference on var with above
 touch2:
 	for dir in $(ALL_SPL_PATHS); do \
 		cd $(dir $$dir) && touch logfile.txt; \
 		done
 
-# TODO: WRONG
 delete:
 	for dir in $(ALL_SPL_PATHS); do \
 		cd $(dir $$dir) \ rm -f logfile.txt; \
 		done
 
-# do I need to clean the namespace? Is that it?
+all:
+	for dir in $(ALL_SPL_PATHS); do \
+		make delete
+		cd $(notdir $$dir) && npm install; \
+		done
