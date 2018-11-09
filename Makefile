@@ -2,6 +2,8 @@ OS := $(shell uname)
 SHELL := /bin/bash
 TODAY=`date +'%y.%m.%d %H:%M:%S'`
 .PHONY: myapp-fake clean whatever all-fakes
+SAMPLE1 := sample_sub
+SAMPLE2 := 
 
 run-app-from-main:
 	@echo '==================== running the app from main Makefile ==================='
@@ -20,3 +22,49 @@ stop-app:
 
 stop-app2:
 	make --ignore-errors stop-app
+
+# =========
+SPL1 := sample_sub
+SPL2 := sample_sub2
+SPL3 := sample_sub2/sample_sub2_sub
+
+ALL_SPL_PATHS := $(SPL1) $(SPL2) $(SPL3)
+SUP_SPL_PATHS := $(SPL1) $(SPL2)
+
+# single case works
+run_install_and_touch_on_first:
+	cd $(SPL3) && npm install && touch logfile.txt
+
+# show that the iteration is working
+iterate:
+	for dir in $(ALL_SPL_PATHS); do \
+		echo $$dir; \
+		done
+
+# runs on each folder -- compare with below
+install:
+	for dir in $(ALL_SPL_PATHS); do \
+		cd $(notdir $$dir) && npm install; \
+		done
+
+# TODO: WRONG - errors out
+ # difference - file operation
+touch:
+	for dir in $(ALL_SPL_PATHS); do \
+		cd $(notdir $$dir) && touch logfile.txt; \
+		done
+
+# TODO: WRONG - makes only one on parent
+ # difference on var with above
+touch2:
+	for dir in $(ALL_SPL_PATHS); do \
+		cd $(dir $$dir) && touch logfile.txt; \
+		done
+
+# TODO: WRONG
+delete:
+	for dir in $(ALL_SPL_PATHS); do \
+		cd $(dir $$dir) \ rm -f logfile.txt; \
+		done
+
+# do I need to clean the namespace? Is that it?
