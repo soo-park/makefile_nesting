@@ -8,7 +8,7 @@ run-app-from-main:
 	make -C	sample_sub run-app &
 	echo run-app-from-main: $(TODAY) >> logfile
 	make call-something-in-self
-	make -C	sample_sub run-app &
+	make -C	sample_sub2 run-app &
 
 call-something-in-self:
 	@echo '==================== call something in self ==================='
@@ -16,7 +16,8 @@ call-something-in-self:
 	make myapp-fake
 
 stop-app:
-	kill $(lsof -n -i :3000 | pgrep LISTEN)
+	kill $(lsof -n -i :3000 | pgrep {${arr[1]}})
+	kill $(lsof -n -i :3006 | pgrep {${arr[1]}})
 
 stop-app2:
 	make --ignore-errors stop-app
