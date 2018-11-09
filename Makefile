@@ -44,22 +44,27 @@ iterate:
 # runs on each folder -- compare with below
 install:
 	for dir in $(ALL_SPL_PATHS); do \
-		cd $(notdir $$dir) && npm install; \
+		(cd $(notdir $$dir) && npm install); \
 		done
 
 touch:
 	for dir in $(ALL_SPL_PATHS); do \
-		cd $(notdir $$dir) && touch logfile.txt; \
+		(cd $(notdir $$dir) && touch logfile.txt); \
 		done
 
 touch2:
 	for dir in $(ALL_SPL_PATHS); do \
-		cd $(dir $$dir) && touch logfile.txt; \
+		(cd $(dir $$dir) && touch logfile.txt); \
+		done
+
+delete_in_parent:
+	for dir in $(ALL_SPL_PATHS); do \
+		(cd $(dir $$dir) && rm -f logfile.txt); \
 		done
 
 include common/Makefile
 
 delete_all:
 	for dir in $(ALL_SPL_PATHS); do \
-		cd $(notdir $$dir) && make delete; \
+		(cd $(notdir $$dir) && make delete); \
 		done
