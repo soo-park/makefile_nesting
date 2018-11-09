@@ -52,14 +52,9 @@ touch:
 		(cd $(notdir $$dir) && touch logfile.txt); \
 		done
 
-touch2:
-	for dir in $(ALL_SPL_PATHS); do \
-		(cd $(dir $$dir) && touch logfile.txt); \
-		done
-
 delete_in_parent:
 	for dir in $(ALL_SPL_PATHS); do \
-		(cd $(dir $$dir) && rm -f logfile.txt); \
+		(cd $(notdir $$dir) && rm node_modules && rm -f logfile.txt); \
 		done
 
 include common/Makefile
