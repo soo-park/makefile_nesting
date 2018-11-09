@@ -1,6 +1,8 @@
 OS := $(shell uname)
 SHELL := /bin/bash
 
+include ../common/Makefile.mk
+
 run-app:
 	@echo '==================== $(PATH)$(INPATH) ==================='
 	npm install
