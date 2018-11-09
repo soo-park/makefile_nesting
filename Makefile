@@ -57,6 +57,7 @@ delete_in_parent:
 		(cd $(notdir $$dir) && rm -rf node_modules && rm -f logfile.txt); \
 		done
 
+# TODO: resolve common
 include common/Makefile
 
 delete_all:
