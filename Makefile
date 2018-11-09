@@ -8,6 +8,7 @@ run-app-from-main:
 	make -C	sample_sub run-app &
 	echo run-app-from-main: $(TODAY) >> logfile
 	make call-something-in-self
+	make -C	sample_sub run-app &
 
 call-something-in-self:
 	@echo '==================== call something in self ==================='
@@ -16,3 +17,6 @@ call-something-in-self:
 
 stop-app:
 	kill $(lsof -n -i :3000 | pgrep LISTEN)
+
+stop-app2:
+	make --ignore-errors stop-app
