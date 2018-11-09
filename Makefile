@@ -17,8 +17,8 @@ call-something-in-self:
 
 # TODO: make kill work
 stop-app:
-	kill $(lsof -n -i :3000 | pgrep {${arr[1]}})
-	kill $(lsof -n -i :3006 | pgrep {${arr[1]}})
+	kill $(lsof -n -i :3000 | awk ‘{print $2}’)
+	kill $(lsof -n -i :3006 | awk ‘{print $2}’)
 
 stop-app2:
 	make --ignore-errors stop-app
