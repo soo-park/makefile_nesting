@@ -15,6 +15,7 @@ call-something-in-self:
 	echo call-something-in-self: $(TODAY) >> logfile
 	make myapp-fake
 
+# TODO: make kill work
 stop-app:
 	kill $(lsof -n -i :3000 | pgrep {${arr[1]}})
 	kill $(lsof -n -i :3006 | pgrep {${arr[1]}})
@@ -53,7 +54,7 @@ touch:
 
 delete_in_parent:
 	for dir in $(ALL_SPL_PATHS); do \
-		(cd $(notdir $$dir) && rm node_modules && rm -f logfile.txt); \
+		(cd $(notdir $$dir) && rm -rf node_modules && rm -f logfile.txt); \
 		done
 
 include common/Makefile
